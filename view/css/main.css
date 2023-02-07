@@ -1,0 +1,245 @@
+:root {
+	--clr-blue-300: hsl(216, 99%, 72%);
+	--clr-blue-400: hsl(216, 98%, 62%);
+	--clr-blue-500: hsl(216, 98%, 52%);
+	--clr-blue-600: hsl(216, 98%, 42%);
+	--clr-blue-700: hsl(216, 98%, 32%);
+
+	--clr-red-100: hsl(355, 70%, 92%);
+	--clr-red-300: hsl(355, 70%, 72%);
+	--clr-red-400: hsl(355, 70%, 62%);
+	--clr-red-500: hsl(355, 70%, 52%);
+	--clr-red-600: hsl(355, 70%, 42%);
+	--clr-red-700: hsl(355, 70%, 32%);
+
+	--clr-green-300: hsl(152, 31%, 72%);
+	--clr-green-400: hsl(152, 31%, 62%);
+	--clr-green-500: hsl(152, 31%, 52%);
+	--clr-green-600: hsl(152, 31%, 42%);
+	--clr-green-700: hsl(152, 31%, 32%);
+
+	--clr-neutral-100: hsl(240, 20%, 99%);
+	--clr-neutral-200: hsl(240, 20%, 95%);
+	--clr-neutral-300: hsl(210, 14%, 89%);
+	--clr-neutral-400: hsl(210, 14%, 79%);
+	--clr-neutral-500: hsl(210, 14%, 69%);
+	--clr-neutral-600: hsl(210, 14%, 59%);
+	--clr-neutral-900: hsl(210, 14%, 9%);
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	line-height: 1.5;
+	color: var(--clr-neutral-900);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.2;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul {
+	list-style: none;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+button {
+	outline: none;
+	border: none;
+	background: transparent;
+	font-size: inherit;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+input[type='text'],
+input[type='email'],
+textarea,
+select {
+	display: block;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='number'],
+input[type='file'],
+input[type='password'],
+input[type='date'],
+select,
+textarea,
+fieldset {
+	width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	padding: 0.25rem;
+}
+
+textarea {
+	resize: vertical;
+	min-height: 5rem;
+}
+
+.radio-group {
+	margin-right: 0.5rem;
+	display: inline-block;
+}
+
+.input-error {
+	border: 2px solid var(--clr-red-700);
+}
+
+.error {
+	color: var(--clr-red-700);
+	padding: 0.25rem;
+	display: inline-block;
+	border-radius: 0.125rem;
+	background-color: var(--clr-red-100);
+	margin-top: 0.5rem;
+}
+
+.wrapper {
+	--max-width: 1200px;
+	width: min(var(--max-width), 95vw);
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+.wrapper--narrow {
+	--max-width: 700px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.5em 1.25em;
+	border: none;
+	outline: none;
+	user-select: none;
+	cursor: pointer;
+	font-size: inherit;
+	border-radius: 0.25rem;
+
+	border: 1px solid var(--border-clr);
+	background-color: var(--bg-clr);
+	color: var(--text-clr);
+
+	transition: background-color 250ms ease, color 250ms ease;
+}
+
+.btn-primary,
+.btn-primary--inverse:hover,
+.btn-primary--inverse:focus-visible {
+	--bg-clr: var(--clr-blue-500);
+	--text-clr: var(--clr-neutral-100);
+	--border-clr: var(--clr-blue-700);
+}
+
+.btn-primary--inverse,
+.btn-primary:hover,
+.btn-primary:focus-visible {
+	--text-clr: var(--clr-blue-500);
+	--bg-clr: var(--clr-neutral-100);
+	--border-clr: var(--clr-blue-700);
+}
+
+.btn-secondary,
+.btn-secondary--inverse:hover,
+.btn-secondary--inverse:focus-visible {
+	--bg-clr: var(--clr-neutral-900);
+	--text-clr: var(--clr-neutral-100);
+	--border-clr: var(--clr-neutral-900);
+}
+
+.btn-secondary--inverse,
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+	--text-clr: var(--clr-neutral-900);
+	--bg-clr: var(--clr-neutral-100);
+	--border-clr: var(--clr-neutral-900);
+}
+
+.btn-danger,
+.btn-danger--inverse:hover,
+.btn-danger--inverse:focus-visible {
+	--bg-clr: var(--clr-red-500);
+	--text-clr: var(--clr-neutral-100);
+	--border-clr: var(--clr-red-700);
+}
+
+.btn-danger--inverse,
+.btn-danger:hover,
+.btn-danger:focus-visible {
+	--text-clr: var(--clr-red-500);
+	--bg-clr: var(--clr-neutral-100);
+	--border-clr: var(--clr-red-700);
+}
+
+.btn--block {
+	display: block;
+	width: 100%;
+}
+
+.text-left {
+	text-align: left !important;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.mb-1 {
+	margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+	margin-bottom: 1rem;
+}
+
+.mb-4 {
+	margin-bottom: 2rem;
+}
+
+.mb-6 {
+	margin-bottom: 3rem;
+}
+
+.flex {
+	display: flex;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.align-center {
+	align-items: center;
+}
+
+/* header */
+
+.main-header {
+	padding: 1.5rem 0;
+	background-color: var(--clr-neutral-200);
+}
+
+.primary-nav__items {
+	gap: 1rem;
+}
