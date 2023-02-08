@@ -1,4 +1,4 @@
-<header class="main-header mb-4">
+<header class="main-header">
   <div class="wrapper">
     <div class="flex justify-between align-center">
       <div class="logo">LOGO</div>
@@ -7,9 +7,11 @@
         <ul class="primary-nav__items flex align-center">
           <li class="primary-nav__item"><a href="" class="primary-nav__link">About</a></li>
           <li class="primary-nav__item"><a href="" class="primary-nav__link">Contact</a></li>
-          <form action="/user/logout" class="inline-form">
-            <button class="btn btn-secondary--inverse">Logout</button>
-          </form>
+          <?php if (isset($user)) : ?>
+            <form action="/user/logout" class="inline-form" method="POST">
+              <button class="btn btn-secondary--inverse">Logout</button>
+            </form>
+          <?php endif ?>
         </ul>
       </nav>
     </div>

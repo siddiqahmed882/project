@@ -1,11 +1,12 @@
 <main>
-  <?php if (isset($server_error)) : ?>
-    <p class="alert alert--danger">
-      <?= $server_error ?>
-    </p>
-  <?php endif; ?>
 
   <div class="wrapper wrapper--narrow">
+
+    <?php if (isset($server_error)) : ?>
+      <p class="alert alert--danger">
+        <?= $server_error ?>
+      </p>
+    <?php endif; ?>
 
     <header class="mb-2 text-center">
       <h1>User Information</h1>

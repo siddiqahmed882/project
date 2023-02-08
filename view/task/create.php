@@ -1,10 +1,12 @@
 <main>
-  <?php if (isset($server_error)) : ?>
-    <p class="alert alert--danger">
-      <?= $server_error ?>
-    </p>
-  <?php endif; ?>
+
   <div class="wrapper wrapper--narrow">
+
+    <?php if (isset($server_error)) : ?>
+      <p class="alert alert--danger">
+        <?= $server_error ?>
+      </p>
+    <?php endif; ?>
 
     <header class="mb-2 text-center">
       <h1>Create Task</h1>
@@ -37,10 +39,10 @@
       </div>
 
       <div class="form-group mb-1">
-        <label for="end_date">End Date</label>
-        <input type="date" name="end_date" id="end_date" class="<?= isset($errors["end_date"]) ? 'input-error' : '' ?>" value="<?= $formData["end_date"] ?? '' ?>" min="<?php echo date('Y-m-d'); ?>" required />
-        <?php if (isset($errors["end_date"])) : ?>
-          <span class="error"><?= $errors["end_date"] ?></span>
+        <label for="due_date">End Date</label>
+        <input type="date" name="due_date" id="due_date" class="<?= isset($errors["due_date"]) ? 'input-error' : '' ?>" value="<?= $formData["due_date"] ?? '' ?>" min="<?php echo date('Y-m-d'); ?>" required />
+        <?php if (isset($errors["due_date"])) : ?>
+          <span class="error"><?= $errors["due_date"] ?></span>
         <?php endif; ?>
       </div>
 
@@ -67,15 +69,15 @@
 
 
       <div class="form-group mb-2">
-        <label for="">Please select a user for the task</label>
-        <select name="user_id" id="">
+        <label for="assigned_to">Please select a user for the task</label>
+        <select name="assigned_to" id="assigned_to">
           <option value="" selected disabled>Users</option>
-          <!-- <?php foreach ($users as $user) : ?>
+          <?php foreach ($users as $user) : ?>
             <option value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
-          <?php endforeach; ?> -->
+          <?php endforeach; ?>
         </select>
-        <?php if (isset($errors["user_id"])) : ?>
-          <span class="error"><?= $errors["user_id"] ?></span>
+        <?php if (isset($errors["assigned_to"])) : ?>
+          <span class="error"><?= $errors["assigned_to"] ?></span>
         <?php endif; ?>
       </div>
 

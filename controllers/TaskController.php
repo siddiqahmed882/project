@@ -81,5 +81,23 @@ class TaskController
         "formData" => $formData
       ]);
     }
+
+    return header("Location: /");
+  }
+
+  public static function getTaskList()
+  {
+    $result = getAllTasksForUser($_SESSION["user"]["id"]);
+    if ($result["status"] === "success") {
+      $tasks = $result["tasks"];
+      $server_error = null;
+    } else {
+      $tasks = [];
+      $server_error = $result["message"];
+    }
+    View::render("task/index", [
+      "tasks" => $tasks,
+      "server_error" => $server_error
+    ]);
   }
 }

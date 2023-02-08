@@ -26,7 +26,7 @@ function save_user_info($formData)
   global $db;
 
   try {
-    $query = "INSERT INTO users (name, cnic, nationality, address, mobile_number, email, profile_photo, education, training, work_experience, cv) VALUES (:name, :cnic, :nationality, :address, :mobile_number, :email, :profile_photo, :education, :training, :work_experience, :cv)";
+    $query = "INSERT INTO users (name, cnic, nationality, address, mobile_number, email, profile_photo, education, training, work_experience, cv, username, password, member_id) Values (:name, :cnic, :nationality, :address, :mobile_number, :email, :profile_photo, :education, :training, :work_experience, :cv, :username, :password, :member_id)";
 
     $statement = $db->prepare($query);
 
@@ -39,8 +39,11 @@ function save_user_info($formData)
     $statement->bindValue(":profile_photo", $formData["profile_photo"]);
     $statement->bindValue(":education", $formData["education"]);
     $statement->bindValue(":training", $formData["training"]);
-    $statement->bindValue(":work_experience", $formData["work_experience"]);
+    $statement->bindValue(":work_experience", (int)$formData["work_experience"]);
     $statement->bindValue(":cv", $formData["cv"]);
+    $statement->bindValue(":username", $formData["username"]);
+    $statement->bindValue(":password", $formData["password"]);
+    $statement->bindValue(":member_id", $formData["member_id"]);
 
     $statement->execute();
 
@@ -56,28 +59,39 @@ function save_user_info($formData)
   }
 }
 
-function add_user_auth_info($formData)
+// get user by username
+function get_user_by_username($username)
 {
   global $db;
 
   try {
-    $query = "INSERT INTO user_auth (member_id, username, password) VALUES (:member_id, :username, :password)";
+    $query = "SELECT * FROM users WHERE username = :username";
 
     $statement = $db->prepare($query);
 
-    $statement->bindValue(":member_id", $formData["member_id"]);
-    $statement->bindValue(":username", $formData["username"]);
-    $statement->bindValue(":password", $formData["password"]);
+    $statement->bindValue(":username", $username);
 
     $statement->execute();
 
-    if ($statement->rowCount() > 0) {
-      return true;
+    $user = $statement->fetch();
+
+    // check if user exists
+    if ($user) {
+      return [
+        "user" => $user,
+        "error" => false,
+      ];
     } else {
-      return false;
+      return [
+        "user" => null,
+        "error" => "User does not exist",
+      ];
     }
   } catch (PDOException $e) {
-    return $e->getMessage();
+    return [
+      "user" => null,
+      "error" => $e->getMessage(),
+    ];
   } finally {
     $statement->closeCursor();
   }
@@ -99,7 +113,17 @@ function get_user_by_id($id)
 
     $user = $statement->fetch();
 
-    return $user;
+    if ($user) {
+      return [
+        "user" => $user,
+        "error" => false,
+      ];
+    } else {
+      return [
+        "user" => null,
+        "error" => "User does not exist",
+      ];
+    }
   } catch (PDOException $e) {
     return $e->getMessage();
   } finally {

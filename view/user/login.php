@@ -8,15 +8,10 @@
     <?php endif; ?>
 
     <header class="mb-2 text-center">
-      <h1>SignUp</h1>
+      <h1>SignIn</h1>
     </header>
 
-    <form action="/user/sign_up" enctype="multipart/form-data" method="POST">
-
-      <!--  generate hidden input fields for formData -->
-      <?php foreach ($formData as $key => $value) : ?>
-        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>" />
-      <?php endforeach; ?>
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data" method="POST">
 
       <div class="form-group mb-1">
         <label for="username">Username</label>
@@ -34,15 +29,10 @@
         <?php endif; ?>
       </div>
 
-      <div class="form-group mb-1">
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" name="confirm_password" id="confirm_password" required />
-      </div>
-
       <button type="submit" class="btn btn-primary btn--block">Submit</button>
 
     </form>
 
-    <p>Already have an account? <a href="/user/login">Sign in instead</a></p>
+    <p>Don't have an account? <a href="/user/create">Sign up instead</a></p>
   </div>
 </main>

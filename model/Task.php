@@ -31,22 +31,30 @@ function createTask($formData)
   }
 }
 
-function getAllTasks()
+function getAllTasksForUser($id)
 {
   global $db;
 
   try {
-    $query = "SELECT * FROM tasks";
+    $query = "SELECT tasks.*, users.name, users.profile_photo FROM tasks JOIN users ON tasks.assigned_by = users.id WHERE tasks.assigned_to = :id";
 
     $statement = $db->prepare($query);
+
+    $statement->bindValue(":id", $id);
 
     $statement->execute();
 
     $tasks = $statement->fetchAll();
 
-    return $tasks;
+    return [
+      "tasks" => $tasks,
+      "status" => "success",
+    ];
   } catch (PDOException $e) {
-    return $e->getMessage();
+    return [
+      "status" => "error",
+      "message" => $e->getMessage()
+    ];
   } finally {
     $statement->closeCursor();
   }

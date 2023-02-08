@@ -39,6 +39,21 @@ body {
 	line-height: 1.5;
 	color: var(--clr-neutral-900);
 	font-family: Arial, Helvetica, sans-serif;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1;
+	padding: 1rem;
+}
+
+footer {
+	color: white;
+	background-color: var(--clr-neutral-900);
+	padding: 1rem;
+	text-align: center;
 }
 
 h1,
@@ -118,7 +133,7 @@ textarea {
 
 .wrapper {
 	--max-width: 1200px;
-	width: min(var(--max-width), 95vw);
+	width: min(var(--max-width), 95%);
 	margin: 0 auto;
 	padding: 0 1rem;
 }
@@ -242,4 +257,69 @@ textarea {
 
 .primary-nav__items {
 	gap: 1rem;
+}
+
+/* tasks table */
+.tasks-table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.tasks-table th,
+.tasks-table td {
+	padding: 0.5rem;
+	border: 1px solid var(--clr-neutral-300);
+}
+
+/* Nav Bar */
+
+.nav {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	background-color: var(--clr-neutral-200);
+	height: 100%;
+}
+
+.nav a {
+	display: block;
+	padding: 0.5rem 1rem;
+	margin-bottom: 0.5rem;
+	border-bottom: 1px solid var(--clr-neutral-300);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+	background-color: var(--clr-neutral-300);
+}
+
+.content {
+	flex: 1;
+	display: flex;
+}
+
+/* Home */
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.card {
+	flex: 1 1 300px;
+	padding: 1rem;
+	background-color: var(--clr-neutral-200);
+	border-radius: 0.25rem;
+	min-height: 30vh;
+	text-align: center;
+}
+
+.card > .title {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.user-info {
+	padding: 1rem;
 }

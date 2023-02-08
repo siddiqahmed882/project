@@ -10,8 +10,13 @@
 </head>
 
 <body>
+
   <?php include_once('partials/_header.php') ?>
-  <?= $content ?>
+  <div class="content">
+    <?php include_once('partials/_nav.php') ?>
+    <?= $content ?>
+  </div>
+  <?php include_once('partials/_footer.php') ?>
 
 </body>
 

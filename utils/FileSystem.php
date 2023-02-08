@@ -6,6 +6,11 @@ class FileSystem
   // function to upload file
   public static function uploadFile($file, $folder)
   {
+    // create folder if not exists
+    if (!file_exists("public/uploads/" . $folder)) {
+      mkdir("public/uploads/" . $folder, 0777, true);
+    }
+
     $path = "public/uploads/" . $folder . "/";
     $filename = $file["name"];
     $tmp_name = $file["tmp_name"];
