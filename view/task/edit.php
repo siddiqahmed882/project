@@ -73,7 +73,7 @@
             <label for="completed">Completed</label>
           </div>
           <div class="radio-group">
-            <input type="radio" name="status" id="late" value="late" <?= !$assigned_to_me ? 'disabled' : null ?> <?php if (isset($task["status"]) && $task["status"] == "late") : ?> checked <?php endif; ?> />
+            <input type="radio" name="status" id="late" value="late" disabled <?php if (isset($task["status"]) && $task["status"] == "late") : ?> checked <?php endif; ?> />
             <label for="late">Late</label>
           </div>
         </fieldset>
