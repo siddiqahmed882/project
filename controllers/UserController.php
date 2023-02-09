@@ -37,6 +37,14 @@ class User
       $errors += ["name" => "Name must be atleat 3 char long and max of 50"];
     }
 
+    // if (strlen($formData["cnic"]) != 13) {
+    //   $errors += ["cnic" => "Invalid CNIC. CNIC Number must be 13 digits long."];
+    // }
+
+    if (empty($formData["cnic"])) {
+      $errors += ["cnic" => "CNIC can not be empty"];
+    }
+
     // if (FormValidations::validateCNIC($formData["cnic"]) == false) {
     //   $errors += ["cnic" => "Invalid CNIC. CNIC Number starts with a digit between 1 and 9, followed by 10 more digits."];
     // }
@@ -47,6 +55,14 @@ class User
 
     if (empty($formData["address"])) {
       $errors += ["address" => "Address can not be empty"];
+    }
+
+    // if (strlen($formData["mobile_number"]) != 11) {
+    //   $errors += ["mobile_number" => "Invalid Mobile Number. Mobile Number must be 11 digits long."];
+    // }
+
+    if (empty($formData["mobile_number"])) {
+      $errors += ["mobile_number" => "Mobile Number can not be empty"];
     }
 
     // if (FormValidations::validatePhoneNumber($formData["mobile_number"]) == false) {

@@ -31,7 +31,8 @@ function createTask($formData)
   }
 }
 
-function getAllTasksForUser($id)
+// get all task by user id
+function getAllTasksByUserId($id)
 {
   global $db;
 
@@ -61,12 +62,45 @@ function getAllTasksForUser($id)
 }
 
 
+// get all tasks for user where status is late
+function getAllTasksForUserByStatus($id, $status)
+{
+  global $db;
+
+  try {
+    $query = "SELECT tasks.*, users.name, users.profile_photo FROM tasks JOIN users ON tasks.assigned_by = users.id WHERE tasks.assigned_to = :id AND tasks.status = :status";
+
+    $statement = $db->prepare($query);
+
+    $statement->bindValue(":id", $id);
+    $statement->bindValue(":status", $status);
+
+    $statement->execute();
+
+    $tasks = $statement->fetchAll();
+
+    return [
+      "tasks" => $tasks,
+      "status" => "success",
+    ];
+  } catch (PDOException $e) {
+    return [
+      "status" => "error",
+      "message" => $e->getMessage()
+    ];
+  } finally {
+    $statement->closeCursor();
+  }
+}
+
+
+// get task by id
 function getTaskById($id)
 {
   global $db;
 
   try {
-    $query = "SELECT * FROM tasks WHERE id = :id";
+    $query = "SELECT tasks.*, users.name, users.profile_photo FROM tasks JOIN users ON tasks.assigned_by = users.id WHERE tasks.id = :id";
 
     $statement = $db->prepare($query);
 
@@ -76,7 +110,41 @@ function getTaskById($id)
 
     $task = $statement->fetch();
 
-    return $task;
+    return [
+      "task" => $task,
+      "status" => "success",
+    ];
+  } catch (PDOException $e) {
+    return [
+      "status" => "error",
+      "message" => $e->getMessage()
+    ];
+  } finally {
+    $statement->closeCursor();
+  }
+}
+
+
+// update task status
+function updateTaskStatus($id, $status)
+{
+  global $db;
+
+  try {
+    $query = "UPDATE tasks SET status = :status WHERE id = :id";
+
+    $statement = $db->prepare($query);
+
+    $statement->bindValue(":id", $id);
+    $statement->bindValue(":status", $status);
+
+    $statement->execute();
+
+    if ($statement->rowCount() > 0) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (PDOException $e) {
     return $e->getMessage();
   } finally {

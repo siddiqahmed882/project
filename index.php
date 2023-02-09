@@ -24,10 +24,7 @@ switch ($current_url) {
       TaskController::getTaskList();
     break;
 
-  case "/task":
-    if ($request_method == "GET")
-      TaskController::getTaskList();
-    break;
+    // User Routes
 
   case "/user/info":
     if ($request_method == "GET")
@@ -68,6 +65,13 @@ switch ($current_url) {
       User::getUserInfoView();
     break;
 
+    // Task Routes
+
+  case "/task":
+    if ($request_method == "GET")
+      TaskController::getTaskList();
+    break;
+
   case "/task/create":
     if ($request_method == "GET")
       TaskController::getCreateTaskForm();
@@ -81,6 +85,39 @@ switch ($current_url) {
   case "/task/list":
     if ($request_method == "GET")
       TaskController::getTaskList();
+    break;
+
+  case "/task/list/late":
+    if ($request_method == "GET")
+      TaskController::getLateTaskList();
+    break;
+
+  case "/task/list/pending":
+    if ($request_method == "GET")
+      TaskController::getPendingTaskList();
+    break;
+
+  case "/task/list/active":
+    if ($request_method == "GET")
+      TaskController::getActiveTaskList();
+    break;
+
+  case "/task/view":
+    if ($request_method == "GET")
+      TaskController::getTaskView();
+    break;
+
+  case "/task/update":
+    if ($request_method == "POST")
+      TaskController::updateTask();
+    break;
+
+  case "/error":
+    $error = $_SESSION["error"];
+    if ($request_method == "GET")
+      View::render("error", [
+        "error" => $error
+      ]);
     break;
 
   default:

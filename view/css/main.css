@@ -67,6 +67,11 @@ a {
 	color: inherit;
 }
 
+a:not([class]):hover,
+a:not([class]):focus-visible {
+	text-decoration: underline;
+}
+
 ul {
 	list-style: none;
 }
@@ -83,6 +88,13 @@ button {
 	font-size: inherit;
 	font-family: inherit;
 	cursor: pointer;
+}
+
+button:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+	background-color: var(--clr-neutral-300);
+	color: var(--clr-neutral-900);
 }
 
 input[type='text'],
@@ -322,4 +334,12 @@ textarea {
 
 .user-info {
 	padding: 1rem;
+}
+
+.user-info-card img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin: 0 auto;
 }
